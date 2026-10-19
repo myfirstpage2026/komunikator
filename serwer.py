@@ -93,27 +93,36 @@ async def index():
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Komunikator</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: sans-serif; height: 100vh; display: flex; background: #f0f2f5; }
-  #login { position: fixed; inset: 0; background: #fff; display: flex; flex-direction: column;
-           justify-content: center; align-items: center; gap: 10px; z-index: 10; }
-  #login input, #login button { padding: 12px; width: 240px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; }
-  #login button { background: #075e54; color: #fff; border: none; cursor: pointer; }
-  #sidebar { width: 35%; max-width: 200px; background: #fff; border-right: 1px solid #ddd; overflow-y: auto; }
-  #sidebar h3 { padding: 10px; background: #075e54; color: #fff; font-size: 14px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; height: 100vh; display: flex; background: #121212; color: #e0e0e0; }
+  #login { position: fixed; inset: 0; background: #1e1e1e; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px; z-index: 10; }
+  #login h2 { color: #fff; font-weight: 300; margin-bottom: 10px; }
+  #login input, #login button { padding: 14px; width: 260px; font-size: 16px; border-radius: 8px; border: 1px solid #333; background: #2a2a2a; color: #fff; outline: none; }
+  #login input:focus { border-color: #00a884; }
+  #login button { background: #00a884; color: #fff; border: none; cursor: pointer; font-weight: bold; transition: 0.2s; }
+  #login button:hover { background: #008f6f; }
+  
+  #sidebar { width: 35%; max-width: 250px; background: #1e1e1e; border-right: 1px solid #333; overflow-y: auto; display: flex; flex-direction: column; }
+  #sidebar h3 { padding: 15px; background: #2a2a2a; color: #00a884; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
   #contacts { list-style: none; }
-  #contacts li { padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; font-size: 15px; }
-  #contacts li.active { background: #e9edef; font-weight: 600; }
-  #chat { flex: 1; display: flex; flex-direction: column; }
-  #header { padding: 12px; background: #075e54; color: #fff; font-weight: 600; }
-  #messages { flex: 1; overflow-y: auto; padding: 10px; background: #e5ddd5; }
-  .msg { max-width: 80%; padding: 6px 10px; border-radius: 8px; margin: 4px 0; font-size: 14px; white-space: pre-wrap; word-wrap: break-word; }
-  .msg.sent { background: #dcf8c6; margin-left: auto; }
-  .msg.received { background: #fff; }
-  #input-area { display: flex; padding: 8px; background: #f0f0f0; gap: 6px; }
-  #input-area input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; font-size: 15px; outline: none; }
-  #input-area button { padding: 10px 18px; background: #075e54; color: #fff; border: none; border-radius: 20px; cursor: pointer; }
-  #status { font-size: 11px; color: #666; padding: 2px 10px; background: #f0f0f0; }
+  #contacts li { padding: 15px; border-bottom: 1px solid #2a2a2a; cursor: pointer; font-size: 15px; transition: 0.2s; }
+  #contacts li:hover { background: #2a2a2a; }
+  #contacts li.active { background: #333; border-left: 4px solid #00a884; font-weight: bold; }
+  
+  #chat { flex: 1; display: flex; flex-direction: column; background: #121212; }
+  #header { padding: 15px; background: #1e1e1e; border-bottom: 1px solid #333; color: #fff; font-weight: 600; font-size: 16px; }
+  #messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 15px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+  .msg.sent { background: #005c4b; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
+  .msg.received { background: #2a2a2a; color: #e0e0e0; align-self: flex-start; border-bottom-left-radius: 2px; }
+  
+  #input-area { display: flex; padding: 15px; background: #1e1e1e; border-top: 1px solid #333; gap: 10px; }
+  #input-area input { flex: 1; padding: 12px 16px; border: 1px solid #333; border-radius: 20px; font-size: 15px; outline: none; background: #2a2a2a; color: #fff; }
+  #input-area input:focus { border-color: #00a884; }
+  #input-area button { padding: 12px 24px; background: #00a884; color: #fff; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+  #input-area button:hover { background: #008f6f; }
+  #input-area button:disabled, #input-area input:disabled { opacity: 0.4; cursor: not-allowed; }
+  #status { font-size: 12px; color: #888; padding: 5px 15px; background: #1e1e1e; }
 </style>
 </head>
 <body>
