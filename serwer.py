@@ -83,7 +83,6 @@ async def rozeslij_liste():
         except:
             pass
 
-# --- STRONA INTERNETOWA WKLEJONA BEZPOŚREDNIO DO SERWERA ---
 @app.get("/", response_class=HTMLResponse)
 async def index():
     return """
@@ -138,7 +137,7 @@ async def index():
   </div>
 </div>
 <script>
-const HOST = "komunikator-jtq4.onrender.com"; // <-- TWÓJ ADRES
+const HOST = "komunikator-j1q4.onrender.com";
 const WS_URL = (location.protocol === "https:" ? "wss://" : "ws://") + HOST + "/ws";
 let ws, myName = "", current = null, reconnectTimer = null;
 
